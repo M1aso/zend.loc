@@ -4,7 +4,12 @@ return array(
     'modules' => array(
         'Application',
         'ZendDeveloperTools',
-        'News'
+        'DoctrineModule',
+        'DoctrineORMModule',
+
+        'News',
+
+        'Admin'
     ),
 
     // These are various options for the listeners attached to the ModuleManager

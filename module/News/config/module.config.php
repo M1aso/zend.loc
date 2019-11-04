@@ -2,6 +2,24 @@
 
 return array(
 
+    'doctrine' => array(
+        'driver' => array(
+            'news_entity' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(
+                    __DIR__ . '/../src/News/Entity',
+                ),
+            ),
+
+            'orm_defaults' => array(
+                'drivers' => array(
+                    'News\Entity' => 'news_entity',
+                ),
+            ),
+        ),
+    ),
+
     'controllers' => array(
         'invokables' => array(
                 'News\Controller\Index' => 'News\Controller\IndexController',
