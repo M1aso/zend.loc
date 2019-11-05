@@ -12,7 +12,7 @@ return array(
                 ),
             ),
 
-            'orm_defaults' => array(
+            'orm_default' => array(
                 'drivers' => array(
                     'News\Entity' => 'news_entity',
                 ),
