@@ -2,15 +2,13 @@
 
 namespace Admin\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Application\Controller\BaseAdminController as BaseController;
 
-class CategoryController extends AbstractActionController
+class CategoryController extends BaseController
 {
     public function indexAction()
     {
-        $entityManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-
-        $query = $entityManager->createQuery('SELECT u FROM News\Entity\Category u ORDER BY u.id DESC');
+        $query = $this->getEntityManager()->createQuery('SELECT u FROM News\Entity\Category u ORDER BY u.id DESC');
         $rows = $query->getResult();
 
         return array('categories' => $rows);
