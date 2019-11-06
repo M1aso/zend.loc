@@ -48,6 +48,53 @@ return array(
         ),
     ),
 
+    'service_manager' => array(
+        'factories' => array(
+            'navigation'       => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'admin_navigation' => 'Admin\Lib\AdminNavigationFactory',
+        ),
+    ),
+
+    'navigation' => array(
+        'default' => array(
+            array(
+                'label' => 'Главная',
+                'route' => 'home',
+            ),
+        ),
+        'admin_navigation' => array(
+            array(
+                'label'    => 'Панель управления сайтом',
+                'route'    => 'admin',
+                'action'   => 'index',
+                'resource' => 'Admin\Controller\Index',
+
+                'pages' => array(
+                    array(
+                        'label'  => 'Новости',
+                        'route'  => 'admin/news',
+                        'action' => 'index',
+                    ),
+                    array(
+                        'label'  => 'Добавить новость',
+                        'route'  => 'admin/news',
+                        'action' => 'add',
+                    ),
+                    array(
+                        'label'  => 'Категории',
+                        'route'  => 'admin/category',
+                        'action' => 'index',
+                    ),
+                    array(
+                        'label'  => 'Добавить категорию',
+                        'route'  => 'admin/category',
+                        'action' => 'add',
+                    ),
+                ),
+            ),
+        ),
+    ),
+
     'view_manager' => array(
         'template_path_stack' => array(
             __DIR__ . '/../view',
