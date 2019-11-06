@@ -253,4 +253,18 @@ class News
     {
         return $this->category;
     }
+
+    public function getPreviewTextForTable()
+    {
+        $news = strip_tags($this->getPreviewText());
+        $news = substr($news, 0, 20) . '...';
+        return $news;
+    }
+
+    public function getFullTextForTable()
+    {
+        $news = strip_tags($this->getFullText());
+        $news = mb_substr($news, 0, 15, 'UTF-8') . '...';
+        return $news;
+    }
 }

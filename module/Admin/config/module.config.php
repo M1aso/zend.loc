@@ -6,6 +6,7 @@ return array(
         'invokables' => array(
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
             'category' => 'Admin\Controller\CategoryController',
+            'news' => 'Admin\Controller\NewsController',
         ),
     ),
 
@@ -28,6 +29,16 @@ return array(
                             'route' => 'category/[:action/][:id/]',
                             'defaults' => array(
                                 'controller' => 'category',
+                                'action' => 'index',
+                            ),
+                        ),
+                    ),
+                    'news' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => 'news/[:action/][:id/]',
+                            'defaults' => array(
+                                'controller' => 'news',
                                 'action' => 'index',
                             ),
                         ),

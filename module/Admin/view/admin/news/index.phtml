@@ -1,0 +1,71 @@
+<h1>Новости</h1>
+<a href="/admin/news/add/">Добавить</a><br><br>
+<?php
+    $flash = $this->flashMessenger();
+    $flash->setMessageOpenFormat('<div%s>
+        <button type="button class="close" data-dismiss="alert" aria-hidden="true">
+            &times;
+        </button>
+        <ul>
+            <li>')
+        ->setMessageSeparatorString('</li><li>')
+        ->setMessageCloseString('</li></ul></div>');
+
+    echo $flash->render('error',   array('alert', 'alert-dismissable', 'alert-danger'));
+    echo $flash->render('info',    array('alert', 'alert-dismissable', 'alert-info'));
+    echo $flash->render('default', array('alert', 'alert-dismissable', 'alert-warning'));
+    echo $flash->render('success', array('alert', 'alert-dismissable', 'alert-success'));
+?>
+<table class="table table-striped table-hover ">
+    <tbody>
+    <tr>
+        <th>#</th>
+        <th>Создана</th>
+        <th>Обновлена</th>
+        <th>Название</th>
+        <th>Анонсный текст</th>
+        <th>Полный текст</th>
+        <th>Опубликовано</th>
+        <th>Категория</th>
+        <th>Действие</th>
+    </tr>
+    <?php
+    foreach ($news as $item) {
+        $category = $item->getCategory();
+        if($category){
+            $catName = $category->getCategoryName();
+        } else {
+            $catName = '';
+        }
+        if($item->getIsPublic()){
+            $isPublic = 'Да';
+        } else {
+            $isPublic = 'Нет';
+        }
+        if($item->getCreated()){
+            $createdDate = $item->getCreated()->format('d-m-Y H:i');
+        } else {
+            $createdDate = '';
+        }
+        if($item->getUpdated()){
+            $updatedDate = $item->getUpdated()->format('d-m-Y H:i');
+        } else {
+            $updatedDate = '';
+        }
+
+        echo "<tr>
+                    <td>{$item->getId()}</td>
+                    <td>{$createdDate}</td>
+                    <td>{$updatedDate}</td>
+                    <td>{$item->getTitle()}</td>
+                    <td>{$item->getPreviewTextForTable()}</td>
+                    <td>{$item->getFullTextForTable()}</td>
+                    <td>{$isPublic}</td>
+                    <td>{$catName}</td>";
+        echo '<td><a href="' . $this->url('admin/news', array('action' => 'edit', 'id' => $item->getId())) . '">Редактировать</a>&nbsp;&nbsp;
+            <a href="' . $this->url('admin/news', array('action' => 'delete', 'id' => $item->getId())) . '" onclick="if (confirm(\'Удалить запись?\')) { document.location = this.href; } return false;">Удалить</a></td>';
+        echo "</tr>";
+    }
+    ?>
+    </tbody>
+</table>
