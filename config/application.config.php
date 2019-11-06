@@ -4,11 +4,12 @@ return array(
     'modules' => array(
         'Application',
         'ZendDeveloperTools',
+
         'DoctrineModule',
         'DoctrineORMModule',
 
+        'EdpModuleLayouts',
         'News',
-
         'Admin'
     ),
 

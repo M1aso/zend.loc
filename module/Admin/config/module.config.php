@@ -103,4 +103,11 @@ return array(
             'pagination_control' => __DIR__ . '/../view/layout/pagination_control.phtml',
         ),
     ),
+
+    'module_layouts' => array(
+        'Admin' => array(
+            'default' => 'layout/admin-layout',
+            //'someaction' => 'layout/someAction',
+        ),
+    ),
 );

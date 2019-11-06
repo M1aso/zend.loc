@@ -267,4 +267,21 @@ class News
         $news = mb_substr($news, 0, 30, 'UTF-8') . '...';
         return $news;
     }
+
+    public function getPreviewTextForNews()
+    {
+        $news = $this->getPreviewText();
+        if(empty($news)){
+            $news = $this->getFullText();
+        }
+
+        return $news;
+    }
+
+    public function getFullTextForNews()
+    {
+        $news = $this->getPreviewText() . $this->getFullText();
+
+        return $news;
+    }
 }

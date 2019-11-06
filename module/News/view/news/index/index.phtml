@@ -1,1 +1,37 @@
-<h1>Index Controller</h1>
+<?php
+
+foreach ($news as $item) {
+    $category = $item->getCategory();
+    if($category){
+        $catName = $category->getCategoryName();
+    } else {
+        $catName = '';
+    }
+    if ($item->getIsPublic()){
+        $isPublic = 'Да';
+    } else {
+        $isPublic = 'Нет';
+    }
+    //var_dump($item->getId()); die();
+    $url = $this->url('news', array('action' => 'news', 'id' => $item->getId()));
+
+    echo "<article class='panel pane-default'>
+        <div class='page-header'>
+            <h4 style='padding-left: 30px; font-size: 25px;'><a style='color: black;' href='{$url}'>{$item->getTitle()}</a></h4>
+        </div>
+        <div class='panel-body'>
+            {$item->getPreviewText()}
+        </div>
+        <div class='panel-footer' style='height: 45px;'>
+            <div style='width: 300px; float: left;'>Категория: {$item->getCategory()->getCategoryName()}</div>
+        </div>
+    </article>";
+}
+
+?>
+
+<?php
+
+echo $this->paginationControl($news, 'Sliding', 'pagination_control', array('route' => 'news'));
+
+?>
