@@ -20,7 +20,7 @@ class NewsController extends BaseController
         $adapter = new DoctrineAdapter(new ORMPaginator($query));
 
         $paginator = new Paginator($adapter);
-        $paginator->setDefaultItemCountPerPage(10);
+        $paginator->setDefaultItemCountPerPage(1);
         $paginator->setCurrentPageNumber((int) $this->params()->fromQuery('page', 1));
 
         return array('news' => $paginator);
