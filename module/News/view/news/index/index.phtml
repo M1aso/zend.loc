@@ -12,6 +12,11 @@ foreach ($news as $item) {
     } else {
         $isPublic = 'Нет';
     }
+    if($item->getCreated()){
+        $createdDate = $item->getCreated()->format('d/m/Y H:i');
+    } else {
+        $createdDate = '';
+    }
     //var_dump($item->getId()); die();
     $url = $this->url('news', array('action' => 'news', 'id' => $item->getId()));
 
@@ -24,6 +29,7 @@ foreach ($news as $item) {
         </div>
         <div class='panel-footer' style='height: 45px;'>
             <div style='width: 300px; float: left;'>Категория: {$item->getCategory()->getCategoryName()}</div>
+            <div style='width: 300px; float: right;'>Опубликована: {$createdDate}</div>
         </div>
     </article>";
 }
