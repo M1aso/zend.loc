@@ -11,7 +11,7 @@ ZendDeveloperTools (version 1.0.0)
 
 EdpModuleLayouts (https://github.com/ericpaige/EdpModuleLayouts)
 
-PostgreSQL (version 9.6)
+PostgreSQL (version 9.6) - Дамп базы для примера "**misc/dump.sql**"
 
 Функционал
 ------------
